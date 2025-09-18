@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Funcionário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card-perfil" id="card-container">
+        <h2>Carregando...</h2>
+    </div>
+
+    <script src="dados.js"></script>
+
+    <script>
+        const cardContainer = document.getElementById('card-container');
+
+  
+        const urlParams = new URLSearchParams(window.location.search);
+        const funcionarioId = urlParams.get('id');
+
+  
+        const funcionario = funcionarios.find(func => func.id === funcionarioId);
+
+  
+        if (funcionario) {
+            document.title = `Perfil de ${funcionario.nome}`;
+            cardContainer.innerHTML = `
+                <h2>${funcionario.nome}</h2>
+                <p class="cargo">${funcionario.cargo}</p>
+                <div class="info-contato">
+                    <p><strong>ID:</strong> ${funcionario.id}</p>
+                    <p><strong>Email:</strong> ${funcionario.email}</p>
+                    <p><strong>Documento:</strong> ${funcionario.documento}</p>
+                    <p><strong>Banco de Horas:</strong> ${funcionario.bancoHoras}</p>
+                </div>
+                <a href="tableindex.html" class="link-voltar">Retorne para a tabela</a>
+            `;
+        } else {
+            cardContainer.innerHTML = `
+                <h2>Funcionário não encontrado</h2>
+                <p>erro.</p>
+                <a href="tableindex.html" class="link-voltar">Retorne para a tabela</a>
+            `;
+        }
+    </script>
+</body>
+</html>

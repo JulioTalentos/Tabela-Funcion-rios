@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Funcionários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 style="text-align: center;">Tabela de Cargos</h1>
+    
+    <div class="table-container"> 
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th>Documento</th>
+                    <th>Banco de Horas</th>
+                </tr>
+            </thead>
+            <tbody id="corpo-tabela"></tbody>
+        </table>
+    </div>
+
+    <script src="dados.js"></script>
+
+    <script>
+        const corpoTabela = document.getElementById('corpo-tabela');
+
+ 
+        funcionarios.forEach(func => {
+
+            const linha = document.createElement('tr');
+
+            const linkPerfil = `<a href="perfil.html?id=${func.id}">${func.nome}</a>`;
+            linha.innerHTML = `
+                <td>${func.id}</td>
+                <td>${linkPerfil}</td>
+                <td>${func.cargo}</td>
+                <td>${func.documento}</td>
+                <td>${func.bancoHoras}</td>
+            `;
+            corpoTabela.appendChild(linha);
+        });
+    </script>
+</body>
+</html>
